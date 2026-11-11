@@ -16,24 +16,43 @@
           </svg></button>
       </form>
       <div class="search-history" id="search-history"></div>
+      
+      <div class="disambiguation-box hidden" id="disambiguation-box">
+        <p class="disambiguation-title">Várias localizações encontradas. Escolha uma:</p>
+        <div class="location-list" id="location-list"></div>
+      </div>
+
       <p class="errTxt" id="errTxt"></p>
+      
       <div class="weather-details" id="weather-details">
-        <h2>Condições atuais em <span id="location">Location Name</span></h2>
-        <div class="grid">
-          <div class="temperature">
-            <img src="https://arsentech.github.io/source-codes/weather-assets/clear.svg" alt="weather-icon" width="150" height="150" id="weather-condition-icon" />
-            <p class="temperatureTxt"><span id="temperature">0</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M16.5 5c1.55 0 3 .47 4.19 1.28l-1.16 2.89A4.47 4.47 0 0 0 16.5 8C14 8 12 10 12 12.5s2 4.5 4.5 4.5c1.03 0 1.97-.34 2.73-.92l1.14 2.85A7.47 7.47 0 0 1 16.5 20A7.5 7.5 0 0 1 9 12.5A7.5 7.5 0 0 1 16.5 5M6 3a3 3 0 0 1 3 3a3 3 0 0 1-3 3a3 3 0 0 1-3-3a3 3 0 0 1 3-3m0 2a1 1 0 0 0-1 1a1 1 0 0 0 1 1a1 1 0 0 0 1-1a1 1 0 0 0-1-1" />
-              </svg></p>
-            <p id="weather-condition-name">Clear</p>
+        
+        <div class="current-weather-card">
+          <h2>Condições atuais em <span id="location">Location Name</span></h2>
+          <p class="coordinates" id="coordinates"></p>
+          <p class="search-time" id="search-time"></p>
+          
+          <div class="grid">
+            <div class="temperature">
+              <img src="https://arsentech.github.io/source-codes/weather-assets/clear.svg" alt="weather-icon" width="140" height="140" id="weather-condition-icon" />
+              <p class="temperatureTxt"><span id="temperature">0</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <path fill="currentColor" d="M16.5 5c1.55 0 3 .47 4.19 1.28l-1.16 2.89A4.47 4.47 0 0 0 16.5 8C14 8 12 10 12 12.5s2 4.5 4.5 4.5c1.03 0 1.97-.34 2.73-.92l1.14 2.85A7.47 7.47 0 0 1 16.5 20A7.5 7.5 0 0 1 9 12.5A7.5 7.5 0 0 1 16.5 5M6 3a3 3 0 0 1 3 3a3 3 0 0 1-3 3a3 3 0 0 1-3-3a3 3 0 0 1 3-3m0 2a1 1 0 0 0-1 1a1 1 0 0 0 1 1a1 1 0 0 0 1-1a1 1 0 0 0-1-1" />
+                </svg></p>
+              <p id="weather-condition-name">Clear</p>
+              <p class="feels-like">Sensação: <span id="apparent-temperature">0</span>°C</p>
+            </div>
+            <ul class="info">
+              <li><img src="https://arsentech.github.io/source-codes/weather-assets/humidity.svg" alt="humidity" width="40" height="40"><span id="humidity">0</span>%</li>
+              <li><img src="https://arsentech.github.io/source-codes/weather-assets/wind.svg" alt="wind-speed" width="40" height="40"><span id="wind-speed">0</span> km/h (<span id="wind-direction">N</span>)</li>
+              <li><svg class="uv-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40"><path fill="#f39c12" d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5s5-2.24 5-5s-2.24-5-5-5m0 2c1.65 0 3 1.35 3 3s-1.35 3-3 3s-3-1.35-3-3s1.35-3 3-3m0-7c.55 0 1 .45 1 1v2c0 .55-.45 1-1 1s-1-.45-1-1V3c0-.55.45-1 1-1m0 16c.55 0 1 .45 1 1v2c0 .55-.45 1-1 1s-1-.45-1-1v-2c0-.55.45-1 1-1m9-9c0 .55-.45 1-1 1h-2c-.55 0-1-.45-1-1s.45-1 1-1h2c.55 0 1 .45 1 1M5 12c0 .55-.45 1-1 1H2c-.55 0-1-.45-1-1s.45-1 1-1h2c.55 0 1 .45 1 1m13.36-6.36c.39.39.39 1.02 0 1.41l-1.41 1.41c-.39.39-1.02.39-1.41 0s-.39-1.02 0-1.41l1.41-1.41c.39-.39 1.02-.39 1.41 0M7.05 16.95c.39.39.39 1.02 0 1.41l-1.41 1.41c-.39.39-1.02.39-1.41 0s-.39-1.02 0-1.41l1.41-1.41c.39-.39 1.02-.39 1.41 0m11.31-1.41c.39-.39 1.02-.39 1.41 0l1.41 1.41c.39.39.39 1.02 0 1.41s-1.02.39-1.41 0l-1.41-1.41c-.39-.39-.39-1.02 0-1.41M7.05 7.05c-.39-.39-1.02-.39-1.41 0L4.23 5.64c-.39-.39-.39-1.02 0-1.41s1.02-.39 1.41 0l1.41 1.41c.39.39.39 1.02 0 1.41"/></svg>UV <span id="uv-index">0</span></li>
+            </ul>
           </div>
-          <ul class="info">
-            <li><img src="https://arsentech.github.io/source-codes/weather-assets/humidity.svg" alt="humidity" width="64" height="64"><span id="humidity">0</span>%</li>
-            <li><img src="https://arsentech.github.io/source-codes/weather-assets/wind.svg" alt="wind-speed" width="64" height="64"><span id="wind-speed">0</span>km/h</li>
-          </ul>
         </div>
-        <h2>Previsão Diária</h2>
-        <div class="daily-cards" id="daily-forecast"></div>
+
+        <div class="forecast-section">
+          <h2 class="forecast-title">Previsão Diária</h2>
+          <div class="daily-cards" id="daily-forecast"></div>
+        </div>
+
       </div>
     </div>
 
